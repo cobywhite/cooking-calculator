@@ -1,0 +1,62 @@
+%flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+%flex-row {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  margin-block-end: 1rem;
+}
+
+.App {
+  @extend %flex-column;
+  flex: 1 1 auto;
+  padding: 1rem;
+}
+
+.headerRow {
+  @extend %flex-row;
+}
+
+.foodRow {
+  @extend %flex-row;
+  flex: none;
+}
+
+.foodInputBox {
+  flex: 1 1 auto;
+  max-width: 80vw;
+}
+
+.inputRow {
+  @extend %flex-row;
+  flex: none;
+}
+.inputAmountBox {
+  flex: none;
+  margin-inline-end: 1rem;
+  align-items: flex-end;
+}
+.inputUnitBox {
+  flex: 1 1 auto;
+  max-width: 50vw;
+}
+
+.outputRow {
+  @extend %flex-row;
+  flex: none;
+}
+
+.outputAmountBox {
+  flex: none;
+  margin-inline-end: 1rem;
+  align-items: flex-end;
+}
+
+.outputUnitBox {
+  flex: 1 1 auto;
+  max-width: 50vw;
+  align-items: flex-end;
+}
