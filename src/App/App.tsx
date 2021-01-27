@@ -43,13 +43,13 @@ function App({}: AppProps) {
   }
 
   return (
-    <div className={style.App}>
-      <div className={style.headerRow}>
+    <div className={style.mainLayout}>
+      <div className={cx(style.headerRow, style.fullBleed)}>
         <Typography variant="h2">
           Cooking Measurement Conversionator 2000
         </Typography>
       </div>
-      <div className={style.foodRow}>
+      <div className={style.App}>
         <div className={style.foodInputBox}>
           <Autocomplete
             options={food_data}
@@ -58,12 +58,10 @@ function App({}: AppProps) {
               setSelectedFoodItem(value);
             }}
             renderInput={(params: any) => (
-              <TextField {...params} label="Item" />
+              <TextField {...params} label="Item" required />
             )}
           />
         </div>
-      </div>
-      <div className={style.inputRow}>
         <div className={style.inputAmountBox}>
           <TextField
             label="Input Amount"
@@ -73,6 +71,7 @@ function App({}: AppProps) {
             }}
             value={inputAmount}
             onChange={(e) => setInputAmount(e.target.value)}
+            required
           />
         </div>
         <div className={style.inputUnitBox}>
@@ -83,12 +82,10 @@ function App({}: AppProps) {
               setInputUnit(value);
             }}
             renderInput={(params: TextFieldProps) => (
-              <TextField {...params} label="Input Unit" />
+              <TextField {...params} label="Input Unit" required />
             )}
           />
         </div>
-      </div>
-      <div className={style.outputRow}>
         <div className={style.outputAmountBox}>
           <Typography variant="h6" component="span">
             Ouput:{' '}
@@ -105,7 +102,7 @@ function App({}: AppProps) {
               setOutputUnit(value);
             }}
             renderInput={(params: any) => (
-              <TextField {...params} label="Output Unit" />
+              <TextField {...params} label="Output Unit" required />
             )}
           />
         </div>
@@ -134,6 +131,28 @@ function calculate({
       ? amountInGrams / outputUnitConversionFactor
       : amountInGrams / itemDensity / -outputUnitConversionFactor;
   return result;
+}
+
+function cx(
+  ...classnames: Array<string | null | undefined | Record<string, boolean>>
+): string {
+  return classnames
+    .filter(notNull)
+    .flatMap((x) => {
+      if (typeof x === 'string') {
+        return x;
+      } else if (typeof x === 'object') {
+        const keys = Object.keys(x);
+        return keys.filter((key) => x[key] === true);
+      } else {
+        throw new Error('UNKNOWN TYPE!');
+      }
+    })
+    .join(' ');
+}
+
+function notNull<T>(obj: T | null | undefined): obj is T {
+  return obj != null;
 }
 
 export default App;

@@ -1,62 +1,51 @@
-%flex-column {
-  display: flex;
-  flex-direction: column;
-}
-
-%flex-row {
-  display: flex;
-  flex-direction: row;
-  align-items: flex-end;
-  margin-block-end: 1rem;
-}
-
 .App {
-  @extend %flex-column;
-  flex: 1 1 auto;
-  padding: 1rem;
+  display: grid;
+  grid-template-areas:
+    'itemSelect itemSelect'
+    'inputAmount inputUnit'
+    'outputAmount outputUnit';
+  grid-template-columns: 1fr 3fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-column-gap: 0.75rem;
+  row-gap: 1rem;
 }
 
 .headerRow {
-  @extend %flex-row;
-}
-
-.foodRow {
-  @extend %flex-row;
-  flex: none;
+  text-align: center;
 }
 
 .foodInputBox {
-  flex: 1 1 auto;
-  max-width: 80vw;
+  grid-area: itemSelect;
 }
 
-.inputRow {
-  @extend %flex-row;
-  flex: none;
-}
 .inputAmountBox {
-  flex: none;
-  margin-inline-end: 1rem;
-  align-items: flex-end;
+  grid-area: inputAmount;
 }
 .inputUnitBox {
-  flex: 1 1 auto;
-  max-width: 50vw;
-}
-
-.outputRow {
-  @extend %flex-row;
-  flex: none;
+  grid-area: inputUnit;
 }
 
 .outputAmountBox {
-  flex: none;
-  margin-inline-end: 1rem;
-  align-items: flex-end;
+  grid-area: outputAmount;
+  align-self: end;
 }
 
 .outputUnitBox {
-  flex: 1 1 auto;
-  max-width: 50vw;
-  align-items: flex-end;
+  grid-area: outputUnit;
+}
+
+.mainLayout {
+  flex: 1 1 auto; // Our expected parent is a flex column
+  display: grid;
+  grid-template-columns: 1fr min(80ch, calc(100% - 64px)) 1fr;
+  grid-column-gap: 32px;
+  row-gap: 1rem;
+  grid-auto-rows: min-content;
+}
+.mainLayout > * {
+  grid-column: 2;
+}
+.fullBleed {
+  width: 100%;
+  grid-column: 1 / -1;
 }
