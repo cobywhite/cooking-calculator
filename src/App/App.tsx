@@ -18,7 +18,7 @@ function App({}: AppProps) {
   const [selectedFoodItem, setSelectedFoodItem] = useState<
     FoodData | undefined | null
   >(null);
-  const [inputAmount, setInputAmount] = useState<number>(1);
+  const [inputAmount, setInputAmount] = useState<string>('1');
   const [inputUnit, setInputUnit] = useState<
     MeasurementData | undefined | null
   >(null);
@@ -27,12 +27,18 @@ function App({}: AppProps) {
   >(null);
 
   let outputAmount = null;
-  if (selectedFoodItem != null && inputUnit != null && outputUnit != null) {
+  const itemQuantity = parseFloat(inputAmount);
+  if (
+    selectedFoodItem != null &&
+    inputUnit != null &&
+    !Number.isNaN(itemQuantity) &&
+    outputUnit != null
+  ) {
     outputAmount = calculate({
       inputUnitConversionFactor: inputUnit.value,
       outputUnitConversionFactor: outputUnit.value,
       itemDensity: selectedFoodItem.density,
-      itemQuantity: inputAmount,
+      itemQuantity,
     });
   }
 
@@ -66,7 +72,7 @@ function App({}: AppProps) {
               min: 0,
             }}
             value={inputAmount}
-            onChange={(e) => setInputAmount(parseInt(e.target.value))}
+            onChange={(e) => setInputAmount(e.target.value)}
           />
         </div>
         <div className={style.inputUnitBox}>
