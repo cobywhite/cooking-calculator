@@ -1598,5 +1598,21 @@
   {
     "item": "Yardlong beans, mature seeds, raw",
     "density": 0.705867724
+  },
+  {
+    "item": "Table Salt (Mortons)",
+    "density": 1.28070739
+  },
+  {
+    "item": "Kosher Salt (Mortons)",
+    "density": 1.014421695
+  },
+  {
+    "item": "Kosher Salt (Diamond Crystal)",
+    "density": 0.6213332882
+  },
+  {
+    "item": "Sea Salt Flakes (Maldon)",
+    "density": 0.5494784182
   }
 ]

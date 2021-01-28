@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import style from './App.module.scss';
-import food_data from '@data/food_densities.json';
+import raw_food_data from '@data/food_densities.json';
 import measurement_data from '@data/measurement_to_grams.json';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import TextField from '@material-ui/core/TextField';
@@ -12,7 +12,7 @@ interface AppProps {}
 type FoodData = typeof food_data[number];
 type MeasurementData = typeof measurement_data[number];
 
-console.log('Styling', style);
+const food_data = raw_food_data.sort((a, b) => a.item.localeCompare(b.item));
 
 function App({}: AppProps) {
   const [selectedFoodItem, setSelectedFoodItem] = useState<
