@@ -2,3 +2,9 @@
 build
 node_modules
 .DS_Store
+/.wrangler/state/v3/cache/miniflare-CacheObject
+
+.dev.vars*
+!.dev.vars.example
+.env*
+!.env.example
